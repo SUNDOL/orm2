@@ -1,4 +1,4 @@
-package com.orm2.server.config;
+package com.orm2.server.jwt;
 
 import java.security.Key;
 import java.util.Date;

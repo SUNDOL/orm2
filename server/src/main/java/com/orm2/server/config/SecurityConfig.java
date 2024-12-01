@@ -16,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.orm2.server.jwt.JwtAuthenticationFilter;
+import com.orm2.server.jwt.JwtAuthorizationFilter;
+
 import jakarta.annotation.PostConstruct;
 
 @Configuration
