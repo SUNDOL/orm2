@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.orm2.server.common.Result;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -16,6 +18,7 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	@Operation(summary = "테스트", description = "테스트")
 	@GetMapping("/test")
 	public String test() {
 		return "Happy Hacking!";
@@ -27,8 +30,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("/login")
-	public String login() {
-		return "Login";
+	public Result login(@RequestBody MemberDTO.Login data) {
+		return service.login(data);
 	}
 	
 	@PostMapping("/logout")

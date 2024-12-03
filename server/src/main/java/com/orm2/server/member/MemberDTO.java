@@ -12,5 +12,12 @@ public class MemberDTO {
 		private String password;
 		private String name;
 	}
+	
+	@Getter
+	@Setter
+	public static class Login {
+		private String email;
+		private String password;
+	}
 
 }
