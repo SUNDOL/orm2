@@ -2,6 +2,7 @@ package com.orm2.server.jwt;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	
+	@Value("${jwt.secret}")
 	private String secretKey;
 	
 	public JwtAuthorizationFilter(String secretKey) {
@@ -24,7 +26,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws java.io.IOException, jakarta.servlet.ServletException {
-
 		String token = request.getHeader("Authorization");
 		if (token != null && token.startsWith("Bearer ")) {
 			token = token.substring(7);
@@ -56,7 +57,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 				.build()
 				.parseClaimsJws(token)
 				.getBody();
-		
 		return claims.getSubject();
 	}
 	

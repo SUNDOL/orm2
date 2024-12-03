@@ -35,11 +35,16 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager authenticationManager)
 			throws Exception {
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/login", "/logout", "/register").permitAll()
-				.requestMatchers("/member/**").authenticated().requestMatchers(HttpMethod.GET, "/board", "/board/{id}")
-				.permitAll().requestMatchers(HttpMethod.POST, "/board/{id}").authenticated()
+		http.authorizeHttpRequests(auth -> auth
+				.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+				.requestMatchers(HttpMethod.GET, "member/test").permitAll()
+				.requestMatchers(HttpMethod.POST, "member/login", "member/logout", "member/register").permitAll()
+				.requestMatchers("/member/**").authenticated()
+				.requestMatchers(HttpMethod.GET, "/board", "/board/{id}").permitAll()
+				.requestMatchers(HttpMethod.POST, "/board/{id}").authenticated()
 				.requestMatchers(HttpMethod.PUT, "/board/{id}").authenticated()
-				.requestMatchers(HttpMethod.DELETE, "/board/{id}").authenticated().anyRequest().denyAll())
+				.requestMatchers(HttpMethod.DELETE, "/board/{id}").authenticated()
+				.anyRequest().denyAll())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilter(new JwtAuthenticationFilter(authenticationManager, secretKey))
 				.addFilterBefore(new JwtAuthorizationFilter(secretKey), UsernamePasswordAuthenticationFilter.class);
