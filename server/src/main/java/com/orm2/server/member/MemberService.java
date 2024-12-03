@@ -19,7 +19,7 @@ public class MemberService {
 
 	public Result register(MemberDTO.Register data) {
 		Result result = new Result();
-		boolean isPresent = repository.findByMemberEmail(data.getEmail());
+		boolean isPresent = true;
 		if (!isPresent) {
 			try {
 				Member member = new Member();
