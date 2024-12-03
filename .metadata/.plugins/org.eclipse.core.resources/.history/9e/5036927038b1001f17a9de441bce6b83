@@ -1,0 +1,5 @@
+package com.orm2.server.enumpkg;
+
+public enum ServiceResult {
+
+}

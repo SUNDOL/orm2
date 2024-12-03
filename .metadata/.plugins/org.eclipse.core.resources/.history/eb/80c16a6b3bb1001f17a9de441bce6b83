@@ -1,0 +1,30 @@
+package com.orm2.server.member;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.orm2.server.common.ErrorResponse;
+import com.orm2.server.common.Result;
+import com.orm2.server.enumpkg.ServiceResult;
+
+@Service
+public class MemberService {
+	
+	@Autowired
+	private MemberRepository memberRepository;
+
+	public Result register(MemberDTO.Register data) {
+		Member member = new Member();
+		member.setMEmail(data.getEmail());
+		member.setMPassword(data.getPassword());
+		member.setMName(data.getName());
+		Result result = new Result();
+		try {
+			
+		} catch (Exception e) {
+			result.setResponse(new ErrorResponse(ServiceResult.FAIL.toString()));
+		}
+		return null;
+	}
+
+}

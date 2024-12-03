@@ -1,0 +1,16 @@
+spring.application.name=server
+
+# PostgreSQL 설정 
+spring.datasource.url=jdbc:postgresql://localhost:5433/orm2
+spring.datasource.username=orm2
+spring.datasource.password=orm2
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA, Hibernate 설정
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto=update
+
+# HikariCP 설정  (Default DB Connection Pool)
+spring.datasource.hikari.minimum-idle=5
+spring.datasource.hikari.maximum-pool-size=10
